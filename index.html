@@ -587,12 +587,12 @@
             color: var(--text-primary);
         }
         
-                    /* REGISTRATION FORM STYLES - GLASSMORPHISM */
+        /* REGISTRATION FORM STYLES - GLASSMORPHISM */
         .registration-glass-container {
             background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(217, 70, 166, 0.2);
             border-radius: 24px;
             max-width: 650px;
             margin: 0 auto;
@@ -630,18 +630,19 @@
             font-weight: 600;
             font-size: 0.95rem;
             margin-bottom: 10px;
-            color: #e2e8f0;
+            color: #f1f5f9; /* Brighter white for better visibility */
             font-family: 'DM Sans', sans-serif;
+            letter-spacing: 0.3px;
         }
 
         .form-field input,
         .form-field select {
             width: 100%;
             padding: 15px 18px;
-            background: rgba(15, 23, 42, 0.7);
-            border: 1.5px solid #334155;
+            background: rgba(15, 23, 42, 0.9); /* Darker background for contrast */
+            border: 1.5px solid rgba(217, 70, 166, 0.3); /* Pink accent border */
             border-radius: 12px;
-            color: white;
+            color: #ffffff; /* Pure white for input text */
             font-size: 1rem;
             transition: all 0.3s ease;
             font-family: 'DM Sans', sans-serif;
@@ -649,45 +650,61 @@
         }
 
         .form-field input::placeholder {
-            color: #64748b;
+            color: #94a3b8; /* Brighter placeholder color */
+            opacity: 1;
         }
 
         .form-field input:focus,
         .form-field select:focus {
-            border-color: var(--primary);
-            background: rgba(15, 23, 42, 0.85);
-            box-shadow: 0 0 0 3px rgba(217, 70, 166, 0.1);
+            border-color: #D946A6; /* Pink primary color on focus */
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 0 0 3px rgba(217, 70, 166, 0.2);
         }
 
         .form-field select {
             cursor: pointer;
             appearance: none;
-            background-image: url("data:image/svg+xml,...");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23D946A6' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'%3E%3C/path%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 18px center;
             padding-right: 45px;
+            color: #94a3b8; /* Lighter color for select placeholder */
+        }
+
+        .form-field select option {
+            background: #1e293b;
+            color: #ffffff;
+            padding: 10px;
+        }
+
+        .form-field select:focus,
+        .form-field select:not([value=""]) {
+            color: #ffffff; /* White when option selected */
         }
 
         .reg-submit-btn {
             width: 100%;
             padding: 17px;
             margin-top: 15px;
-            background: var(--gradient-1);
+            background: linear-gradient(135deg, #D946A6 0%, #9333EA 100%);
             border: none;
             border-radius: 50px;
             color: white;
             font-weight: 700;
             font-size: 1.1rem;
             cursor: pointer;
-            box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 10px 25px -5px rgba(217, 70, 166, 0.4);
             transition: all 0.3s ease;
             font-family: 'DM Sans', sans-serif;
             position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .reg-submit-btn:hover:not(:disabled) {
             transform: translateY(-3px);
-            box-shadow: 0 20px 35px -5px rgba(139, 92, 246, 0.5);
+            box-shadow: 0 20px 35px -5px rgba(217, 70, 166, 0.6);
+            background: linear-gradient(135deg, #E056B7 0%, #A855F7 100%);
         }
 
         .reg-submit-btn:disabled {
@@ -719,8 +736,8 @@
         }
 
         .reg-success {
-            background: rgba(34, 197, 94, 0.15);
-            border: 1px solid #22c55e;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid #10B981;
             color: #86efac;
         }
 
@@ -729,7 +746,18 @@
             border: 1px solid #ef4444;
             color: #fca5a5;
         }
-    
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .registration-glass-container {
+                padding: 30px 25px;
+            }
+            
+            .form-field input,
+            .form-field select {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
 
 
         /* Footer */
@@ -1358,9 +1386,7 @@
                 <div class="event">Workshop Day</div>
             </div>
         </div>
-    </section>
-
-        <!-- REGISTRATION SECTION - GLASSMORPHISM DESIGN -->
+    </section>        <!-- REGISTRATION SECTION - GLASSMORPHISM DESIGN -->
     <section id="registration" class="fade-in">
         <div class="section-header">
             <span class="section-label">Join Us</span>
@@ -1370,40 +1396,45 @@
             </p>
         </div>
 
+
         <div class="registration-glass-container">
             <form id="registrationForm" class="registration-form">
                 <div class="form-row">
                     <div class="form-field">
-                        <label for="regfullname">Full Name <span style="color: #ef4444">*</span></label>
-                        <input type="text" id="regfullname" name="fullname" placeholder="Enter your full name" required>
+                        <label for="reg_full_name">Full Name <span style="color: #ef4444">*</span></label>
+                        <input type="text" id="reg_full_name" name="fullname" placeholder="Enter your full name" required>
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-field">
-                        <label for="regemail">Email Address <span style="color: #ef4444">*</span></label>
-                        <input type="email" id="regemail" name="email" placeholder="name@example.com" required>
-                    </div>
-                </div>
 
                 <div class="form-row">
                     <div class="form-field">
-                        <label for="regphone">Phone Number <span style="color: #ef4444">*</span></label>
-                        <input type="tel" id="regphone" name="phone" placeholder="01XXXXXXXXX" pattern="[0-9]{11}" required>
+                        <label for="reg_email">Email Address <span style="color: #ef4444">*</span></label>
+                        <input type="email" id="reg_email" name="email" placeholder="name@example.com" required>
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-field">
-                        <label for="reginstitution">Institution <span style="color: #ef4444">*</span></label>
-                        <input type="text" id="reginstitution" name="institution" placeholder="University/School name" required>
-                    </div>
-                </div>
 
                 <div class="form-row">
                     <div class="form-field">
-                        <label for="regtopic">Select Topic <span style="color: #ef4444">*</span></label>
-                        <select id="regtopic" name="topic" required>
+                        <label for="reg_phone">Phone Number <span style="color: #ef4444">*</span></label>
+                        <input type="tel" id="reg_phone" name="phone" placeholder="01XXXXXXXXX" pattern="[0-9]{11}" required>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="reg_institution">Institution <span style="color: #ef4444">*</span></label>
+                        <input type="text" id="reg_institution" name="institution" placeholder="University/School name" required>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="reg_topic">Select Topic <span style="color: #ef4444">*</span></label>
+                        <select id="reg_topic" name="topic" required>
                             <option value="" disabled selected>Choose a session...</option>
                             <option value="Research">Research in ICT</option>
                             <option value="Career">Career Development</option>
@@ -1413,10 +1444,12 @@
                     </div>
                 </div>
 
+
                 <button type="submit" id="submitRegBtn" class="reg-submit-btn">
                     <span class="btn-text">Register Now</span>
                     <span class="btn-loader" style="display: none">Processing...</span>
                 </button>
+
 
                 <!-- Success Message -->
                 <div class="reg-message reg-success" id="regSuccessMsg" style="display: none">
@@ -1426,6 +1459,7 @@
                     </svg>
                     <span id="successText">Registration successful! Check your email for confirmation.</span>
                 </div>
+
 
                 <!-- Error Message -->
                 <div class="reg-message reg-error" id="regErrorMsg" style="display: none">
@@ -1438,11 +1472,13 @@
                 </div>
             </form>
 
+
             <p style="text-align: center; margin-top: 2rem; color: rgba(248, 250, 252, 0.6); font-size: 0.9rem">
                 Registration Deadline: February 24, 2026 • All fields are required
             </p>
         </div>
     </section>
+
 
 
     <!-- Contact Section -->
@@ -1589,7 +1625,12 @@
             }
         }
 
-        createParticles();
+            createParticles();
     </script>
+
+    <!-- Registration JavaScript -->
+    <script type="module" src="js/registration.js"></script>
+
 </body>
 </html>
+

@@ -17,10 +17,11 @@ const successContainer = document.getElementById('successContainer')
 const sectionHeader = document.querySelector('#registration .section-header')
 
 // Get form fields
-const fullNameField = document.getElementById('reg_full_name')
-const emailField = document.getElementById('reg_email')
-const phoneField = document.getElementById('reg_phone')
-const institutionField = document.getElementById('reg_institution')
+const fullNameField = document.getElementById('regfullname')
+const emailField = document.getElementById('regemail')
+const phoneField = document.getElementById('regphone')
+const institutionField = document.getElementById('reginstitution')
+
 
 // If the form isn't on the page, do nothing (prevents console errors)
 if (!registrationForm || !submitButton) {

@@ -16,12 +16,13 @@ const formContainer = document.querySelector('.registration-glass-container')
 const successContainer = document.getElementById('successContainer')
 const sectionHeader = document.querySelector('#registration .section-header')
 
-// Get form fields
-const fullNameField = document.getElementById('regfullname')
-const emailField = document.getElementById('regemail')
-const phoneField = document.getElementById('regphone')
-const institutionField = document.getElementById('reginstitution')
-
+// Get form fields (UPDATED: support both old IDs and new IDs)
+const fullNameField =
+  document.getElementById('reg_full_name') || document.getElementById('regfullname')
+const emailField = document.getElementById('reg_email') || document.getElementById('regemail')
+const phoneField = document.getElementById('reg_phone') || document.getElementById('regphone')
+const institutionField =
+  document.getElementById('reg_institution') || document.getElementById('reginstitution')
 
 // If the form isn't on the page, do nothing (prevents console errors)
 if (!registrationForm || !submitButton) {
@@ -53,7 +54,7 @@ if (!registrationForm || !submitButton) {
     phoneField.addEventListener(
       'input',
       debounce((e) => {
-        // Allow only digits
+        // Allow only digits (UPDATED: regex literal should use \d, not \\d)
         e.target.value = e.target.value.replace(/[^\d]/g, '')
         const phone = e.target.value
         if (!phone || phone.trim() === '') return hideError(phoneErrorDiv)
@@ -194,12 +195,14 @@ function debounce(func, wait) {
 }
 
 function isValidEmail(email) {
+  // UPDATED: regex literal should use \s and \. (not \\s and \\.)
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i
   return re.test(String(email).trim())
 }
 
 function isValidPhoneBD(phone) {
   const p = String(phone).trim()
+  // UPDATED: regex literal should use \d (not \\d)
   if (!/^\d+$/.test(p)) return false
   if (p.length !== 11) return false
   if (!p.startsWith('01')) return false
@@ -217,6 +220,7 @@ function getPhoneErrors(phone) {
   const errors = []
   const p = String(phone).trim()
   if (!p) return ['Phone number is required']
+  // UPDATED: regex literal should use \d (not \\d)
   if (!/^\d+$/.test(p)) return ['Phone number must contain only digits']
   if (p.length !== 11) errors.push('Phone number must be exactly 11 digits')
   if (!p.startsWith('01')) errors.push('Phone number must start with 01')

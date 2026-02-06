@@ -120,8 +120,17 @@ function validateRegistrationForm(formData) {
   };
 }
 
-// Export functions (for ES6 modules - optional)
-// If using <script src="..."> tags, these are already global
+// Make functions available globally (safe even if registration.js is loaded as type=module)
+if (typeof window !== "undefined") {
+  window.isValidEmail = isValidEmail;
+  window.isValidPhone = isValidPhone;
+  window.getEmailErrors = getEmailErrors;
+  window.getPhoneErrors = getPhoneErrors;
+  window.validateRegistrationForm = validateRegistrationForm;
+}
+
+// Export functions (for CommonJS - optional)
+// If using <script src="..."> tags in the browser, these are already global
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     isValidEmail,
